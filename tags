@@ -1,0 +1,151 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/disnocen/pr/tlpMurru/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210110.0/
+Infinity	multitlp.py	/^Infinity=math.inf$/;"	v
+Infinity	multitlp_testing.py	/^Infinity=math.inf$/;"	v
+Infinity	test.py	/^Infinity=math.inf$/;"	v
+InvMod	multitlp.py	/^def InvMod(a,mod):$/;"	f
+InvMod	multitlp_testing.py	/^def InvMod(a,mod):$/;"	f
+Mod	multitlp.py	/^def Mod(a,mod):$/;"	f
+Mod	multitlp_testing.py	/^def Mod(a,mod):$/;"	f
+a	analysis.py	/^    a=getreturns(x[i])$/;"	v
+a	ord.py	/^    a=random.randrange(10,n)$/;"	v
+a	rivesttlp.py	/^a=random.randrange(10,n)$/;"	v
+a	test.py	/^a = 14896984069081$/;"	v
+a	test.py	/^a = 835348340628$/;"	v
+a	test.py	/^a = Infinity$/;"	v
+a	test.py	/^a= 2251191278179932$/;"	v
+a	testing.py	/^    a=random.randrange(12,n)$/;"	v
+a14	test.py	/^a14 = tlp.hdpotmod(14,0,d,a,n) $/;"	v
+a14a	test.py	/^a14a = tlp.hdprodmod(a9,a5,0,d,n) $/;"	v
+a2	test.py	/^a2 = tlp.hdpotmod(2,0,d,a,n) $/;"	v
+a3	test.py	/^a3 = tlp.hdpotmod(3,0,d,a,n) $/;"	v
+a5	test.py	/^a5 = tlp.hdpotmod(5,0,d,a,n) $/;"	v
+a9	test.py	/^a9 = tlp.hdpotmod(9,0,d,a,n) $/;"	v
+aaa	test.py	/^aaa = tlp.hdprodmod(a,a2,0,d,n) $/;"	v
+aaaaa	test.py	/^aaaaa = tlp.hdprodmod(a3,a2,0,d,n) $/;"	v
+b	analysis.py	/^    b=getstats(a)$/;"	v
+b	test.py	/^b = 14379999608863$/;"	v
+b	test.py	/^b = 20429454591295$/;"	v
+b	test.py	/^b = Infinity$/;"	v
+bmGenExp	multitlp.py	/^def bmGenExp(t, p, q):$/;"	f
+bmGenExp	multitlp_testing.py	/^def bmGenExp(t, p, q):$/;"	f
+bmGenPuzzle	multitlp.py	/^def bmGenPuzzle(mex,a,t,p,q,h,d):$/;"	f
+bmGenPuzzle	multitlp_testing.py	/^def bmGenPuzzle(mex,a,t,p,q,h,d):$/;"	f
+bmPuzzle	testing.py	/^    bmPuzzle=bmGenPuzzle(mex,a,t,p,q,0,d)$/;"	v
+bmSolExp	multitlp.py	/^def bmSolExp(t, n):$/;"	f
+bmSolExp	multitlp_testing.py	/^def bmSolExp(t, n):$/;"	f
+bmSolPuzzle	multitlp.py	/^def bmSolPuzzle(x):$/;"	f
+bmSolPuzzle	multitlp_testing.py	/^def bmSolPuzzle(x):$/;"	f
+d	genprimes.py	/^    d=getGoodD(p,q)$/;"	v
+d	rivesttlp.py	/^d=2$/;"	v
+d	test.py	/^d = 2;$/;"	v
+d	testing.py	/^    d=mydict[k][3]$/;"	v
+e	nnn.py	/^    e=int(e)$/;"	v
+e	nnn.py	/^    e=random.random()*10$/;"	v
+e	testing.old.py	/^    e=random.randrange(12,n)$/;"	v
+f	analysis.py	/^f=open("analysis-values.txt",'a' )$/;"	v
+f	analysis.py	/^f=open('values.txt','r')$/;"	v
+f	genprimes.py	/^f=open("primes.txt",'a' )$/;"	v
+f	test.py	/^f = 23;$/;"	v
+f	testing.old.py	/^f=open("values.txt",'a' )$/;"	v
+genN	genprimes.py	/^def genN(nbit):$/;"	f
+getGoodD	genprimes.py	/^def getGoodD(p,q):$/;"	f
+getreturns	analysis.py	/^def getreturns(x):$/;"	f
+getstats	analysis.py	/^def getstats(x):$/;"	f
+good	ord.py	/^good=[]$/;"	v
+h	test.py	/^h = 0;$/;"	v
+hdpotmod	multitlp.py	/^def hdpotmod(n,h,d,z,mod): #z^n mod mod$/;"	f
+hdpotmod	multitlp_testing.py	/^def hdpotmod(n,h,d,z,mod): #z^n mod mod$/;"	f
+hdprod	multitlp.py	/^def hdprod(a,b,h,d):$/;"	f
+hdprod	multitlp_testing.py	/^def hdprod(a,b,h,d):$/;"	f
+hdprodmod	multitlp.py	/^def hdprodmod(a,b,h,d,mod):$/;"	f
+hdprodmod	multitlp_testing.py	/^def hdprodmod(a,b,h,d,mod):$/;"	f
+hdprodn	multitlp.py	/^def hdprodn(a,b,d):$/;"	f
+hdprodn	multitlp_testing.py	/^def hdprodn(a,b,d):$/;"	f
+isprime	multitlp.py	/^def isprime(n):  # First the primality test$/;"	f
+isprime	multitlp_testing.py	/^def isprime(n):  # First the primality test$/;"	f
+jacobi	multitlp.py	/^def jacobi(a, n):$/;"	f
+jacobi	multitlp_testing.py	/^def jacobi(a, n):$/;"	f
+list	genprimes.py	/^list={}$/;"	v
+list	testing.old.py	/^list={}$/;"	v
+list	testing.py	/^list={}$/;"	v
+m	test.py	/^m= 2251191278179932$/;"	v
+main	multitlp.py	/^def main():$/;"	f
+main	multitlp_testing.py	/^def main():$/;"	f
+mcm	ord.py	/^def mcm(a,b):$/;"	f
+mcm	testing.old.py	/^def mcm(a,b):$/;"	f
+mcm	testing.py	/^def mcm(a,b):$/;"	f
+message	rivesttlp.py	/^message="ciao"  $/;"	v
+message	rivesttlp.py	/^message=tlp.rswSolPuzzle(puzzle)$/;"	v
+mex	testing.py	/^mex='ciao'# a tutti'$/;"	v
+mydict	testing.py	/^mydict= {106: (9736059014546863, 2945556800007421, 28678114835572062522265352270323, 2), 212: (8/;"	v
+n	ord.py	/^n=p*q$/;"	v
+n	rivesttlp.py	/^n=p*q$/;"	v
+n	test.py	/^n = p*q;$/;"	v
+n	testing.old.py	/^    n=p*q$/;"	v
+n	testing.py	/^    n=mydict[k][2]$/;"	v
+nbit	genprimes.py	/^    nbit=nbit+100$/;"	v
+nbit	genprimes.py	/^nbit=100$/;"	v
+nbit	nnn.py	/^nbit=1024$/;"	v
+nbit	testing.old.py	/^    nbit=nbit+100$/;"	v
+nbit	testing.old.py	/^nbit=100$/;"	v
+nbit	testing.py	/^    nbit=k$/;"	v
+nbit	testing.py	/^nbit=100$/;"	v
+nextprime	genprimes.py	/^def nextprime(nbit):$/;"	f
+nextprime	testing.old.py	/^def nextprime(nbit):$/;"	f
+np	analysis.py	/^import numpy as np$/;"	I	nameref:module:numpy
+nthprime	multitlp.py	/^def nthprime(n):   # then generic code for nth prime number$/;"	f
+nthprime	multitlp_testing.py	/^def nthprime(n):   # then generic code for nth prime number$/;"	f
+ord	ord.py	/^def ord(x,n,N):$/;"	f
+ord	testing.old.py	/^def ord(x,n):$/;"	f
+ord	testing.py	/^def ord(x,n):$/;"	f
+p	ord.py	/^p=74442869$/;"	v
+p	rivesttlp.py	/^p=240517$/;"	v
+p	test.py	/^p = 3261397$/;"	v
+p	testing.old.py	/^    p=nextprime(nbit\/2)[0]$/;"	v
+p	testing.py	/^    p=mydict[k][0]$/;"	v
+primo	test.py	/^primo=tlp.hdprodmod(a, b, 0, d, n)$/;"	v
+puzzle	rivesttlp.py	/^puzzle=tlp.rswGenPuzzle(message,a,t, p, q)$/;"	v
+q	ord.py	/^q=56089981$/;"	v
+q	rivesttlp.py	/^q=582623$/;"	v
+q	test.py	/^q = 8394863$/;"	v
+q	testing.old.py	/^    q=nextprime(nbit\/2)[0]$/;"	v
+q	testing.py	/^    q=mydict[k][1]$/;"	v
+quarto	test.py	/^quarto= tlp.hdpotmod(f, 0, d, m, n)$/;"	v
+results	ord.py	/^results={1:"nada"}$/;"	v
+rswGenExp	multitlp.py	/^def rswGenExp(t, p, q):$/;"	f
+rswGenExp	multitlp_testing.py	/^def rswGenExp(t, p, q):$/;"	f
+rswGenPuzzle	multitlp.py	/^def rswGenPuzzle(mex,a,t,p,q):$/;"	f
+rswGenPuzzle	multitlp_testing.py	/^def rswGenPuzzle(mex,a,t,p,q):$/;"	f
+rswPuzzle	testing.py	/^    rswPuzzle=rswGenPuzzle(mex,a,t,p,q)$/;"	v
+rswSolExp	multitlp.py	/^def rswSolExp(t, n):$/;"	f
+rswSolExp	multitlp_testing.py	/^def rswSolExp(t, n):$/;"	f
+rswSolExp2	multitlp.py	/^def rswSolExp2(a,t, n):$/;"	f
+rswSolExp2	multitlp_testing.py	/^def rswSolExp2(a,t, n):$/;"	f
+rswSolPuzzle	multitlp.py	/^def rswSolPuzzle(x):$/;"	f
+rswSolPuzzle	multitlp_testing.py	/^def rswSolPuzzle(x):$/;"	f
+secondo	test.py	/^secondo = tlp.hdprodmod(a, b, 0, d, n)$/;"	v
+start_time	rivesttlp.py	/^start_time = time.time()$/;"	v
+sum	nnn.py	/^    sum=sum + e*2**i$/;"	v
+sum	nnn.py	/^sum=0$/;"	v
+t	rivesttlp.py	/^t = 100000000000000000000 #number of time slots desired$/;"	v
+t	testing.py	/^t=25*10#^6$/;"	v
+terzo	test.py	/^terzo= tlp.hdprodmod(a, b, 0, d, n)$/;"	v
+tlp	rivesttlp.py	/^import multitlp as tlp$/;"	I	nameref:module:multitlp
+tlp	test.py	/^import multitlp as tlp$/;"	I	nameref:module:multitlp
+towrite	testing.old.py	/^towrite="did 10^8 squaring and recorded data once every 10^6; therefore 100 mesurements. Various/;"	v
+towrite	testing.py	/^towrite="did 25*10^6 squaring and recorded data once every 10^6; therefore 25 mesurements. Vario/;"	v
+vals	analysis.py	/^vals={}$/;"	v
+x	analysis.py	/^x=ast.literal_eval(x)$/;"	v
+x	analysis.py	/^x=f.read()$/;"	v
+x	nnn.py	/^x=int(x[:-1])$/;"	v
+x	nnn.py	/^x=subprocess.Popen(["sh","-c", ".\/nextprime.sh " +str(sum)], stdout=subprocess.PIPE).communicat/;"	v

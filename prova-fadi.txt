@@ -1,0 +1,39 @@
+h = 0;
+p = Prime[234 345]
+3 261 397
+q = Prime[564 563]
+8 394 863
+n = p q;
+d = 2;
+JacobiSymbol[d, p]
+-1
+JacobiSymbol[d, q]
+1
+a = Infinity
+∞
+b = RandomInteger[{1, n - 1}]
+14 379 999 608 863
+hdprodmod[a, b, 0, d, n]
+14 379 999 608 863
+a = RandomInteger[{1, n - 1}]
+835 348 340 628
+b = Infinity
+∞
+hdprodmod[a, b, 0, d, n]
+835 348 340 628
+a = RandomInteger[{1, n - 1}]
+14 896 984 069 081
+b = RandomInteger[{1, n - 1}]
+20 429 454 591 295
+hdprodmod[a, b, 0, d, n]
+830 052 648 327
+a = RandomInteger[{1, n - 1}]
+hdprodmod[a, b, 0, d, n]
+∞
+m = RandomInteger[{1, n - 1}]
+2 251 191 278 179 932
+e = 23;
+hdpotmod[e, 0, d, m, n]
+498 326 899 140 316
+PowerMod[m, e, n]
+1 113 802 055 526 982

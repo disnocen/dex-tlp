@@ -1,0 +1,33 @@
+(* il prodotto \odot_P *)
+hdprod[a_, b_, h_, d_] := 
+	If[a ⩵ Infinity, b,
+Ifb ⩵ Infinity, a, Ifh + a + b ⩵ 0, Infinity, Togetherd + a b  h + a + b;
+hdprodn[a_, b_, d_] := d + a b  a + b
+(* potenza del prodotto \odot_P *)
+hdpot[n_, h_, d_, z_] := pona[z, n, hdprod[#1, #2, h, d] &]
+(*il prodotto \odot_P implementato quando il campo su cui si lavora è Z_p,
+ovvero F=Z_p*)
+hdprodmod[a_, b_, h_, d_, mod_] := Ifa ⩵ Infinity, b, Ifb ⩵ Infinity, a,
+IfMod[h + a + b, mod] ⩵ 0, Infinity, ModMod[d, mod] + Mod[a, mod] Mod[b, mod]
+PowerMod[Mod[h, mod] + Mod[a, mod] + Mod[b, mod], -1, mod], mod;
+hdprodmod2[a_, b_, h_, d_, mod_] :=
+Ifa ⩵ -Infinity, -Infinity, Ifb ⩵ -Infinity, -Infinity,
+Ifa ⩵ Infinity, b, Ifb ⩵ Infinity, a, IfMod[h + a + b, mod] ⩵ 0, Infinity,
+IfGCD[h + a + b, mod] ≠ 1, -Infinity, ModMod[d, mod] + Mod[a, mod] Mod[b, mod]
+PowerMod[Mod[h, mod] + Mod[a, mod] + Mod[b, mod], -1, mod], mod;
+(*potenza del prodotto \odot_P implementata
+quando il campo su cui si lavora è Z_p*)
+hdpotmod[n_, h_, d_, z_, mod_] := pona[z, n, hdprodmod[#1, #2, h, d, mod] &]
+hdpotmod2[n_, h_, d_, z_, mod_] := pona[z, n, hdprodmod2[#1, #2, h, d, mod] &]
+(*il prodotto tra due punti a e b sulla conica, ovvero \odot_E*)
+puntiprod[a_, b_, h_, d_] := Together[{a[[1]] × b[[1]] + a[[2]] × b[[2]] d,
+a[[2]] × b[[1]] + a[[1]] × b[[2]] + a[[2]] × b[[2]] h}]
+(*il prodotto \odot_E implementato quando il campo su cui si lavora è Z_p*)
+puntiprodmod[a_, b_, h_, d_, mod_] :=
+Mod[puntiprod[Mod[a, mod], Mod[b, mod], Mod[h, mod], Mod[d, mod]], mod]
+(*potenza del prodotto \odot_E implementata
+quando il campo su cui si lavora è Z_p*)
+puntipotmod[n_, h_, d_, p_, mod_] := pona[p, n, puntiprodmod[#1, #2, h, d, mod] &]
+(*potenza del prodotto \odot_E*)
+puntipot[n_, h_, d_, p_] := pona[p, n, puntiprod[#1, #2, h, d] &]
+(*matrice le cui potenze forniscono i polinomi di Rédei generalizzati. Sikk
