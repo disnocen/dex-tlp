@@ -112,7 +112,7 @@ d2=155573345874763183098206
 e2=440402925270048815200841
 z2=588182170130865887218576
 ris2=301909792672242928377467
-print("ris2 = ", hdpotmod(e3,0,d3,z3,n3) == ris2,"in",time.time()-start,"secs")
+print("ris2 = ", hdpotmod(e2,0,d2,z2,n2) == ris2,"in",time.time()-start,"secs")
 
 start=time.time()
 
