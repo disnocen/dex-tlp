@@ -53,23 +53,23 @@ def Dgen(mx,my,n):
 
 def bmGenExp(t, p, q):
     n = (p+1)*(q+1)
-    #phi = (p+1)*(q+1)
-    phi = mcm(p+1,q+1)
+    phi = mcm(p-1,q-1)
     e=pow(2, t, phi)
     return e
 
 def bmGenPuzzle(mex_x,a,t,p,q,h):
-    mex_y=5
+    mex_y=1
     n=p*q
     start_time=time.time()
     e=bmGenExp(t,p,q)
    
     num=int(mex_x.encode('ascii').hex(),16)
     d=Dgen(num,mex_y,n)
+    print("computing jacoby")
     while jacobi(d,n)!=-1:
-        print("jacobi is: ",jacobi(d,n))
+        #print("jacobi is: ",jacobi(d,n))
         mex_y+=2
-        print(d)
+        #print(d)
         d=Dgen(num,mex_y,n)
 
     M=Phi(num,mex_y,n)
@@ -92,11 +92,10 @@ def bmSolExp(a,h,d,t, n):
     #     s = pow(s, 2, n)
     # return s
     s=a
-    x=s
     for i in range(t):
         #x = pow(s, 2, n)
-        x=hdpotmod(2,h,d,x,n) #x0^n mod mod
-    return x
+        s=hdpotmod(2,h,d,s,n) #x0^n mod mod
+    return s
 
 def bmSolPuzzle(x):
     if(x!=0):
@@ -110,8 +109,8 @@ def bmSolPuzzle(x):
         Agen=x[8]
         A=bmSolExp(a,h,d,t,n) 
         print("puzz is", puzz)
-        print("A is", A)
-        print("A is", Agen)
+        print("A is\t", A)
+        print("Agen is\t", Agen)
         print("d is", d)
         M=(puzz-A)%n
         print("M is", M)
@@ -164,26 +163,26 @@ def hdpotmoddiff(n,h,d,z,mod): #z^n mod mod
 
 
 
-def hdpotmod(n,h,d,x0,mod): #x0^n mod mod
-    z=bin(n)[2:]
+def hdpotmod(esp,h,d,x0,mod): #x0^esp mod mod
+    z=bin(esp)[2:]
     #print(z)
-    nbit=len(z)
-    v=[0] * nbit
+    n=len(z)
+    v=[0] * n
     v[0]=x0
     j=[]
-    for i  in range(1,nbit):
+    for i  in range(1,n):
         v[i]= hdprodmod(v[i-1],v[i-1],h,d,mod)
         #print("v[",i,"]=",v[i])
-    for i in range(0,nbit):
-        if (z[nbit-1-i]==str(1)):
+    for i in range(0,n):
+        if (z[n-1-i]==str(1)):
             # print(nbit-i)
             j.append(v[i])
     #print(v)
     #print(j)
     
-    nbit=len(j)
+    n=len(j)
     ris=j[0]
-    for i in range(1,nbit):
+    for i in range(1,n):
         ris =hdprodmod(j[i],ris,h,d,mod)
     return ris 
 
@@ -192,7 +191,7 @@ def hdpotmod(n,h,d,x0,mod): #x0^n mod mod
 mydict= {106: (9736059014546863, 2945556800007421, 28678114835572062522265352270323, 2)}
 
 mex='ciao'
-t=25*10#^15
+t=10**6
 bm=[]
 for k in mydict.keys():
     nbit=k
@@ -200,8 +199,10 @@ for k in mydict.keys():
     q=mydict[k][1]
     n=mydict[k][2]
     d=mydict[k][3]
-    a=random.randrange(12,n)
-
+    a=2#random.randrange(12,n)
+    print("p is\t",p)
+    print("q is\t",q)
+    print("n is\t",n)
     # rswPuzzle=rswGenPuzzle(mex,a,t,p,q)
     # print("rsw gen time with",k,"bits is", rswPuzzle[4]  )
     # rsw.append((k,rswPuzzle[4]))

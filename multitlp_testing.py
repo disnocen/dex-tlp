@@ -36,22 +36,37 @@ def nthprime(n):   # then generic code for nth prime number
 
 def jacobi(a, n):
 #https://www.johndcook.com/blog/2019/02/12/computing-jacobi-symbols/
-    assert(n > a > 0 and n%2 == 1)
+    if a>n:
+        a %=n
     t = 1
     while a != 0:
         while a % 2 == 0:
-            a /= 2
+            a //= 2
             r = n % 8
             if r == 3 or r == 5:
                 t = -t
-            a, n = n, a
-        if a % 4 == n % 4 == 3:
+        a, n = n, a
+        if a % 4 == 3 % 4 == 3:
             t = -t
-            a %= n
-        if n == 1:
-            return t
-        else:
-            return 0
+        n=int(n) # needed bc n is a float after the steps
+        a %= n
+    if n == 1:
+        return t
+    else:
+        return 0
+
+def isNonQuadratic(d,p,q):
+    # d is non quadratic mod N iff  d non quadratic mod p AND non quadratic mod q
+    # i.e. (d|p)=-1 or (d|q)=-1
+    # see https://crypto.stanford.edu/pbc/notes/numbertheory/qr.html
+
+    if (jacobi(d, p)!=-1 or jacobi(d,q)!=-1):
+        return True
+    else:
+        # print(d,"is quadratic because")
+        # print("d|p=",jacobi(d,p))
+        # print("d|q=",jacobi(d,q))
+        return False
 
 def rswGenExp(t, p, q):
    n = p*q
@@ -64,7 +79,7 @@ def rswGenPuzzle(mex,a,t,p,q):
     e=rswGenExp(t,p,q)
     a=a%n
     A=pow(a,e,n) 
-    num=int(mex.encode().hex(),16)
+    num=int.from_bytes(mex,'big')
     end_time=time.time()
     if(num<n):
         puzz=(num+A)%n
@@ -76,14 +91,10 @@ def rswGenPuzzle(mex,a,t,p,q):
         return 0
 
 def bmGenExp(t, p, q):
-   n = (p+1)*(q+1)
-   #phi = (p+1)*(q+1)
-   phi = mcm(p+1,q+1)
-   e=pow(2, t, phi)
-   k=math.gcd(e,n)
-   print("mcd is", k)
-   assert k==1,print("mcd is", k)
-   return e
+    n = (p+1)*(q+1)
+    phi = mcm(p-1,q-1)
+    e=pow(2, t, phi)
+    return e
 
 def Phi(x,y,n):
     return (((1+x)%n)*InvMod(y,n))%n
@@ -92,30 +103,68 @@ def InvPhi(m,D,n):
     x=Mod(Mod((m^2+D),n)*InvMod(m^2-D,n),n)
     y=Mod(Mod((2*m),n)*InvMod(m^2-D,n),n)
     return (x,y)
-    
+
+def Dgen(mx,my,n):
+    d=Mod(Mod(pow(mx,2)-1,n)*pow(my,-2,n),n)
+    return d 
+
 def bmGenPuzzle(mex_x,a,t,p,q,h):
     mex_y=1
     n=p*q
     start_time=time.time()
     e=bmGenExp(t,p,q)
    
-    num=int(mex_x.encode('ascii').hex(),16)
-    d=((num^2-1)%n *InvMod(mex_y,n))%n
+    num=int.from_bytes(mex_x,'big')
+    d=Dgen(num,mex_y,n)
+    print("computing jacoby")
+    while not isNonQuadratic(d,p,q):
+        #print("jacobi is:\t",jacobi(d,n),"mex_y is\t",mex_y,end="\r")
+        mex_y+=1
+        # print(d,end="\r")
+        d=Dgen(num,mex_y,n)
+
     M=Phi(num,mex_y,n)
-    print ("M is ", M)
     a=a%n
     A=hdpotmod(e,h,d,a,n)
-    print("during generation, A is", A)
-
-    print("during generation num is",num )
     end_time=time.time()
     if(num<n):
-        puzz=(num+A)%n
+        puzz=Mod(M+A,n)
         return (a,t,puzz,n,h,d,end_time-start_time, num,A)
     else:
         print("num",num) 
         print("n  ",n) 
         return 0
+
+# def bmGenPuzzle(mex_x,a,t,p,q,h):
+#     mex_y=1
+#     n=p*q
+#     start_time=time.time()
+#     e=bmGenExp(t,p,q)
+   
+#     num=int(mex_x.encode('ascii').hex(),16)
+#     d=Dgen(num,mex_y,n)
+#     print("computing jacoby")
+#     while jacobi(d,n)!=-1:
+#         #print("jacobi is: ",jacobi(d,n))
+#         mex_y+=2
+#         #print(d)
+#         d=Dgen(num,mex_y,n)
+
+#     M=Phi(num,mex_y,n)
+#     print ("M is ", M)
+#     a=a%n
+#     A=hdpotmod(e,h,d,a,n)
+#     print("during generation, A is", A)
+
+#     print("during generation num is",num )
+#     end_time=time.time()
+#     if(num<n):
+#         puzz=(num+A)%n
+#         return (a,t,puzz,n,h,d,end_time-start_time, num,A)
+#     else:
+#         print("num",num) 
+#         print("n  ",n) 
+#         return 0
 
 def rswSolExp(t, n):
    s = 2
@@ -141,19 +190,25 @@ def rswSolPuzzle(x):
         n=x[3] 
 #        e=rswSolExp(t,n) 
 #        A=pow(a,e,n) 
+        start_time=time.time()
         A=rswSolExp2(a,t,n) 
+        end_time=time.time()
         num=(puzz-A)%n
         num=hex(num) 
         #print(num)
-        return bytes.fromhex(num[2:]).decode('ascii')
+        return (bytes.fromhex(num[2:]),end_time-start_time)
     else:
         return "puzzle submitted is broken"  
 
 def bmSolExp(a,h,d,t, n):
-    s = a
+    # for i in range(t):
+    #     print("t is ",t,"\ts is",s)
+    #     s = pow(s, 2, n)
+    # return s
+    s=a
     for i in range(t):
-        s = pow(s, 2, n)
-    
+        #x = pow(s, 2, n)
+        s=hdpotmod(2,h,d,s,n) #x0^n mod mod
     return s
    
 #    s = a
@@ -165,6 +220,7 @@ def bmSolExp(a,h,d,t, n):
 
 def bmSolPuzzle(x):
     if(x!=0):
+    #(a,t,puzz,n,h,d,end_time-start_time, num,A)
         a=x[0]
         t=x[1] 
         puzz=x[2] 
@@ -173,15 +229,12 @@ def bmSolPuzzle(x):
         d=x[5]
         Agen=x[8]
         A=bmSolExp(a,h,d,t,n) 
-        print("during solution, A is", A)
-        print("difference between, Agen and A is", Agen-A)
-        num=(puzz-A)%n
-        num= InvPhi(num,d,n)[0]
-        print("during solution, num is", num)
-        num=hexa(num)
-        return bytes.fromhex(num).decode('ascii')
+        M=(puzz-A)%n
+        num=hexa(M-1)
+        return bytes.fromhex(num)
     else:
         return "puzzle submitted is broken"  
+  
 
 def Mod(a,mod):
     return a%mod
@@ -223,29 +276,28 @@ def hdpotmoddiff(n,h,d,z,mod): #z^n mod mod
 
 
 
-def hdpotmod(n,h,d,x0,mod): #x0^n mod mod
-    z=bin(n)[2:]
+def hdpotmod(esp,h,d,x0,mod): #x0^esp mod mod
+    z=bin(esp)[2:]
     #print(z)
-    nbit=len(z)
-    v=[0] * nbit
+    n=len(z)
+    v=[0] * n
     v[0]=x0
     j=[]
-    for i  in range(1,nbit):
+    for i  in range(1,n):
         v[i]= hdprodmod(v[i-1],v[i-1],h,d,mod)
         #print("v[",i,"]=",v[i])
-    for i in range(0,nbit):
-        if (z[nbit-1-i]==str(1)):
+    for i in range(0,n):
+        if (z[n-1-i]==str(1)):
             # print(nbit-i)
             j.append(v[i])
     #print(v)
     #print(j)
     
-    nbit=len(j)
+    n=len(j)
     ris=j[0]
-    for i in range(1,nbit):
+    for i in range(1,n):
         ris =hdprodmod(j[i],ris,h,d,mod)
     return ris 
-
    
    
    
