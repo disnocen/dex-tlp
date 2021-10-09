@@ -86,8 +86,8 @@ def rswGenPuzzle(mex,a,t,p,q):
         return (a,t,puzz,n,end_time-start_time)
         
     else:
-        print("num",num) 
-        print("n  ",n) 
+        # print("num",num) 
+        # print("n  ",n) 
         return 0
 
 def bmGenExp(t, p, q):
@@ -100,8 +100,8 @@ def Phi(x,y,n):
     return (((1+x)%n)*InvMod(y,n))%n
 
 def InvPhi(m,D,n):
-    x=Mod(Mod((m^2+D),n)*InvMod(m^2-D,n),n)
-    y=Mod(Mod((2*m),n)*InvMod(m^2-D,n),n)
+    x=Mod(Mod((m**2+D),n)*InvMod(m**2-D,n),n)
+    y=Mod(Mod((2*m),n)*InvMod(m**2-D,n),n)
     return (x,y)
 
 def Dgen(mx,my,n):
@@ -116,7 +116,7 @@ def bmGenPuzzle(mex_x,a,t,p,q,h):
    
     num=int.from_bytes(mex_x,'big')
     d=Dgen(num,mex_y,n)
-    print("computing jacoby")
+    # print("computing jacoby")
     while not isNonQuadratic(d,p,q):
         #print("jacobi is:\t",jacobi(d,n),"mex_y is\t",mex_y,end="\r")
         mex_y+=1
@@ -127,12 +127,13 @@ def bmGenPuzzle(mex_x,a,t,p,q,h):
     a=a%n
     A=hdpotmod(e,h,d,a,n)
     end_time=time.time()
+    # print("num in generation\t",num) 
     if(num<n):
         puzz=Mod(M+A,n)
         return (a,t,puzz,n,h,d,end_time-start_time, num,A)
     else:
-        print("num",num) 
-        print("n  ",n) 
+        # print("num",num) 
+        # print("n  ",n) 
         return 0
 
 # def bmGenPuzzle(mex_x,a,t,p,q,h):
@@ -229,8 +230,12 @@ def bmSolPuzzle(x):
         d=x[5]
         Agen=x[8]
         A=bmSolExp(a,h,d,t,n) 
+        # print("A==Agen?\t",A==Agen)
         M=(puzz-A)%n
-        num=hexa(M-1)
+        (mex_x,mex_y)=InvPhi(M, d, n)
+        num=hexa(mex_x)
+        # print("num in solving\t",mex_x) 
+
         return bytes.fromhex(num)
     else:
         return "puzzle submitted is broken"  

@@ -44,42 +44,52 @@ mydict= {106: (9736059014546863, 2945556800007421, 28678114835572062522265352270
 
 towrite="did 25*10^6 squaring and recorded data once every 10^6; therefore 25 mesurements. Various bit lengths from 100 to 2000 (inrc. by 100)"  
 
-iters=1000
-count=0
-for i in range(iters):
-    mex=os.urandom(2)
-    #mex=b'\xea\xf2\x89\x99\x1eF\xdc\xfc?\x11\x1f\xef\x0cAN/\x8df\xc6\x84\xce{\xff\xddf&i\xec\x03Kv\x8b'
-    # a tutti'
-    t=10**3
-    rsw=[]
-    bm=[]
-    for k in [1173]:
-    #for k in mydict.keys():
+i=1
+rsw=[]
+bm=[]
+while i<8:
+    mex=os.urandom(32)
+    t=10**i
+    
+    # for k in [1173]:
+    for k in mydict.keys():
         nbit=k
         p=mydict[k][0]
         q=mydict[k][1]
         n=mydict[k][2]
         d=mydict[k][3]
         a=random.randrange(12,n)
-        rswPuzzle=rswGenPuzzle(mex,a,t,p,q)
-        #print("rsw gen time with",k,"bits is", rswPuzzle[4])
-        rsw.append((k,rswPuzzle[4]))
-        bmPuzzle=bmGenPuzzle(mex,a,t,p,q,0)
-        print("bm gen time with",k,"bits is", bmPuzzle[6]  )
-        bm.append((k,bmPuzzle[6]))
-        #print("rswSolPuzzle(rswPuzzle)==mex\t",rswSolPuzzle(rswPuzzle)[0]==mex)
-        print("bmSolPuzzle(bmPuzzle)=\t", bmSolPuzzle(bmPuzzle))
-        print("mex=\t", mex)
-        if    bmSolPuzzle(bmPuzzle) == mex:
-            count+=1
 
-print("count is",count,"which means a rate of",round(100*count/iters,2),"%")
+        start_rsw_gen=time.time()
+        rswPuzzle=rswGenPuzzle(mex,a,t,p,q)
+        end_rsw_gen=time.time()
+        rsw_gen_time=end_rsw_gen-start_rsw_gen
+        
+        start_rsw_sol=time.time()
+        rswSolPuzzle(rswPuzzle)
+        end_rsw_sol=time.time()
+        rsw_sol_time=end_rsw_sol-start_rsw_sol
+        rsw.append((i,k,rsw_gen_time,rsw_sol_time))
+
+        start_bm_gen=time.time()
+        bmPuzzle=bmGenPuzzle(mex,a,t,p,q,0)
+        end_bm_gen=time.time()
+        bm_gen_time=end_bm_gen-start_bm_gen
+
+        start_bm_sol=time.time()
+        bb=bmSolPuzzle(bmPuzzle)
+        end_bm_sol=time.time()
+        bm_sol_time=end_bm_sol-start_bm_sol
+
+        bm.append((i,k,bm_gen_time,bm_sol_time))
+    i+=1
+        
 
 
 
 f=open("generation-values-from-test.txt",'a' )
 #f.write(towrite)
-f.write("rsw_times="+str(rsw))
+f.write("\nrsw_times="+str(rsw))
 f.write("\nbm_times="+str(bm))
 f.close()
 
